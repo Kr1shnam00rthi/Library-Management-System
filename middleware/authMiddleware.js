@@ -6,16 +6,7 @@ require("dotenv").config();
 const secretKey = process.env.jwt_secret;
 
 // Function to sign JWT token
-function createToken(email, role) {
-    const payload = {
-        email: email,
-        role: role
-    };
-
-    const option = {
-        expiresIn: '1h'
-    };
-    
+function createToken(payload, option) {
     return jwt.sign(payload, secretKey, option);
 }
 
@@ -61,5 +52,5 @@ function authorizeMember(req, res, next) {
     }
     next();
   }
-  
 module.exports = { createToken, authenticateSession, authorizeLibrarian, authorizeMember };
+  
